@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Valentine 💝</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fce4ec;
+      overflow: hidden;
+      font-family: 'Lato', sans-serif;
+      position: relative;
+    }
+
+    .petal {
+      position: fixed;
+      top: -30px;
+      font-size: 1.2rem;
+      animation: fall linear infinite;
+      pointer-events: none;
+      opacity: 0.7;
+      z-index: 0;
+    }
+    @keyframes fall {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    .card {
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(12px);
+      border-radius: 28px;
+      padding: 60px 70px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(233,30,99,0.15);
+      max-width: 520px;
+      width: 90%;
+      position: relative;
+      z-index: 10;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      color: #222;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-bottom: 40px;
+      letter-spacing: 0.04em;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .btn-yes {
+      background: linear-gradient(135deg, #e91e63, #f06292);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 14px 40px;
+      font-size: 1rem;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(233,30,99,0.35);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-yes:hover {
+      transform: scale(1.06);
+      box-shadow: 0 10px 32px rgba(233,30,99,0.45);
+    }
+    .btn-yes:active { transform: scale(0.97); }
+
+    .btn-no {
+      background: #fff;
+      color: #555;
+      border: 1.5px solid #ddd;
+      border-radius: 50px;
+      padding: 13px 28px;
+      font-size: 0.88rem;
+      font-family: 'Lato', sans-serif;
+      cursor: pointer;
+      transition: transform 0.08s, font-size 0.2s;
+      white-space: nowrap;
+      position: absolute;
+    }
+
+    #yes-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      animation: popIn 0.5s ease;
+    }
+    @keyframes popIn {
+      0%   { transform: scale(0.7); opacity: 0; }
+      70%  { transform: scale(1.05); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    #yes-screen h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #e91e63;
+    }
+    #yes-screen p {
+      color: #888;
+      font-size: 0.95rem;
+    }
+    .big-heart {
+      font-size: 4rem;
+      animation: pulse 1s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50%      { transform: scale(1.18); }
+    }
+  </style>
+</head>
+<body>
+
+  <script>
+    const symbols = ['🌸','💗','🌷','💕','✿','❀','💖'];
+    for (let i = 0; i < 22; i++) {
+      const p = document.createElement('div');
+      p.className = 'petal';
+      p.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.fontSize = (0.8 + Math.random() * 1.2) + 'rem';
+      p.style.animationDuration = (4 + Math.random() * 6) + 's';
+      p.style.animationDelay = (Math.random() * 8) + 's';
+      document.body.appendChild(p);
+    }
+  </script>
+
+  <div class="card">
+    <div id="main-screen">
+      <h1>UDAYALU,<br>will you be my Valentine? 💗💝</h1>
+      <p class="subtitle">Choose wisely. (The "No" button is… shy.)</p>
+
+      <div class="buttons" id="btn-area">
+        <button class="btn-yes" onclick="sayYes()">YES</button>
+        <button class="btn-no" id="noBtn" onmouseenter="runAway()" ontouchstart="runAway()">No</button>
+      </div>
+    </div>
+
+    <div id="yes-screen">
+      <div class="big-heart">💖</div>
+      <h2>Yay!! 🎉</h2>
+      <p>I knew you'd say yes.<br>You just made me the happiest person ever 🥰</p>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const btnArea = document.getElementById('btn-area');
+    const card = document.querySelector('.card');
+
+    const noTexts = [
+      'No',
+      "Don't do this to me 🥺",
+      'Please no 😢',
+      'Are you sure?? 😭',
+      'Think again… 💔',
+      'Noooo 🙈',
+      'Last chance! 😅',
+    ];
+    let noIndex = 0;
+
+    function runAway() {
+      noIndex = Math.min(noIndex + 1, noTexts.length - 1);
+      noBtn.textContent = noTexts[noIndex];
+
+      const cardW = card.offsetWidth;
+      const cardH = card.offsetHeight;
+      const btnW  = noBtn.offsetWidth;
+      const btnH  = noBtn.offsetHeight;
+
+      const maxX = cardW - btnW - 20;
+      const maxY = cardH - btnH - 20;
+
+      noBtn.style.left = (10 + Math.random() * maxX) + 'px';
+      noBtn.style.top  = (10 + Math.random() * maxY) + 'px';
+    }
+
+    btnArea.style.position = 'relative';
+    btnArea.style.minHeight = '80px';
+    noBtn.style.position = 'absolute';
+    noBtn.style.top  = '50%';
+    noBtn.style.left = '58%';
+    noBtn.style.transform = 'translateY(-50%)';
+
+    function sayYes() {
+      document.getElementById('main-screen').style.display = 'none';
+      const ys = document.getElementById('yes-screen');
+      ys.style.display = 'flex';
+      for (let i = 0; i < 10; i++) {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        p.textContent = '💖';
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.fontSize = (1.5 + Math.random() * 1.5) + 'rem';
+        p.style.animationDuration = (2 + Math.random() * 3) + 's';
+        p.style.animationDelay = '0s';
+        document.body.appendChild(p);
+      }
+    }
+  </script>
+</body>
+</html>
