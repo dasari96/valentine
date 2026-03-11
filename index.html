@@ -194,11 +194,11 @@
       const btnW  = noBtn.offsetWidth;
       const btnH  = noBtn.offsetHeight;
 
-      const maxX = cardW - btnW - 20;
-      const maxY = cardH - btnH - 20;
+      const maxX = card.offsetWidth - btnW - 10;
+      const maxY = card.offsetHeight - btnH - 10;
 
-      noBtn.style.left = (10 + Math.random() * maxX) + 'px';
-      noBtn.style.top  = (10 + Math.random() * maxY) + 'px';
+      noBtn.style.left = (10 + Math.random() * Math.max(0, maxX - 10)) + 'px';
+      noBtn.style.top  = (10 + Math.random() * Math.max(0, maxY - 10)) + 'px';
     }
 
     btnArea.style.position = 'relative';
