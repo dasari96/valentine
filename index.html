@@ -157,5 +157,70 @@
 
   <div class="card">
     <div id="main-screen">
-      <h1>UDAYASRI,<br>will you be my Valentine? 💗💝</h1>
-      <p class="subtitle"
+      <h1>UDAYALU,<br>will you be my Valentine? 💗💝</h1>
+      <p class="subtitle">Choose wisely. (The "No" button is… shy.)</p>
+
+      <div id="btn-area">
+        <button class="btn-yes" onclick="sayYes()">YES</button>
+        <button class="btn-no" id="noBtn" onmouseenter="runAway()" ontouchstart="runAway()">No</button>
+      </div>
+    </div>
+
+    <div id="yes-screen">
+      <div class="big-heart">💖</div>
+      <h2>Yay!! 🎉</h2>
+      <p>I knew you'd say yes.<br>You just made me the happiest person ever 🥰</p>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const btnArea = document.getElementById('btn-area');
+    const card = document.querySelector('.card');
+
+    const noTexts = [
+      'No',
+      'Please no 🥺',
+      "Don't 😢",
+      'Sure?? 😭',
+      'No! 💔',
+      'Noooo 🙈',
+      'Last! 😅',
+    ];
+    let noIndex = 0;
+
+    function runAway() {
+      noIndex = Math.min(noIndex + 1, noTexts.length - 1);
+      noBtn.textContent = noTexts[noIndex];
+      noBtn.style.transform = 'none';
+
+      const areaW = btnArea.offsetWidth;
+      const areaH = btnArea.offsetHeight;
+      const btnW  = noBtn.offsetWidth;
+      const btnH  = noBtn.offsetHeight;
+
+      const maxX = areaW - btnW - 5;
+      const maxY = areaH - btnH - 5;
+
+      noBtn.style.left = (5 + Math.random() * Math.max(0, maxX)) + 'px';
+      noBtn.style.top  = (90 + Math.random() * Math.max(0, maxY - 90)) + 'px';
+    }
+
+    function sayYes() {
+      document.getElementById('main-screen').style.display = 'none';
+      const ys = document.getElementById('yes-screen');
+      ys.style.display = 'flex';
+      for (let i = 0; i < 10; i++) {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        p.textContent = '💖';
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.fontSize = (1.5 + Math.random() * 1.5) + 'rem';
+        p.style.animationDuration = (2 + Math.random() * 3) + 's';
+        p.style.animationDelay = '0s';
+        document.body.appendChild(p);
+      }
+    }
+  </script>
+</body>
+</html>
