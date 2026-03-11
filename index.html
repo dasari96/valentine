@@ -100,14 +100,10 @@
       font-size: 0.88rem;
       font-family: 'Lato', sans-serif;
       cursor: pointer;
-      white-space: nowrap;
-      position: absolute;
-      max-width: calc(100% - 20px);
-      overflow: hidden;
-      text-overflow: ellipsis;
-     /* transition: transform 0.08s, font-size 0.2s;  */
-     /*white-space: nowrap; */
-    /*position: absolute; */
+      
+      transition: transform 0.08s, font-size 0.2s;  
+      white-space: nowrap; 
+      position: absolute; 
     }
 
     #yes-screen {
@@ -203,7 +199,8 @@
       const maxX = card.offsetWidth - btnW - 10;
       const maxY = card.offsetHeight - btnH - 10;
 
-      noBtn.style.left = (10 + Math.random() * Math.max(0, maxX - 10)) + 'px';
+     /* noBtn.style.left = (10 + Math.random() * Math.max(0, maxX - 10)) + 'px'; */
+      noBtn.style.left = Math.min(10 + Math.random() * Math.max(0, maxX - 10), card.offsetWidth - noBtn.offsetWidth - 10) + 'px';
       noBtn.style.top  = (10 + Math.random() * Math.max(0, maxY - 10)) + 'px';
     }
 
