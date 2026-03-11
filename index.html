@@ -190,18 +190,23 @@
     function runAway() {
       noIndex = Math.min(noIndex + 1, noTexts.length - 1);
       noBtn.textContent = noTexts[noIndex];
-
+      noBtn.style.transform = 'none';    /*added now*/
+    
       const cardW = card.offsetWidth;
       const cardH = card.offsetHeight;
       const btnW  = noBtn.offsetWidth;
       const btnH  = noBtn.offsetHeight;
 
-      const maxX = card.offsetWidth - btnW - 10;
+      const maxX = Math.max(0, cardW - btnW - 10);
+      const maxY = Math.max(0, cardH - btnH - 10);
+    
+      noBtn.style.left = (5 + Math.random() * maxX) + 'px';
+      noBtn.style.top  = (5 + Math.random() * maxY) + 'px';
+      /*const maxX = card.offsetWidth - btnW - 10;
       const maxY = card.offsetHeight - btnH - 10;
 
-     /* noBtn.style.left = (10 + Math.random() * Math.max(0, maxX - 10)) + 'px'; */
-      noBtn.style.left = Math.min(10 + Math.random() * Math.max(0, maxX - 10), card.offsetWidth - noBtn.offsetWidth - 10) + 'px';
-      noBtn.style.top  = (10 + Math.random() * Math.max(0, maxY - 10)) + 'px';
+      noBtn.style.left = (10 + Math.random() * Math.max(0, maxX - 10)) + 'px'; 
+      noBtn.style.top  = (10 + Math.random() * Math.max(0, maxY - 10)) + 'px'; */
     }
 
       btnArea.style.position = 'relative';
