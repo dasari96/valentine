@@ -68,6 +68,7 @@
       justify-content: center;
       flex-wrap: wrap;
       position: relative;
+      min-height: 120px;
     }
 
     .btn-yes {
@@ -201,12 +202,12 @@
       noBtn.style.top  = (10 + Math.random() * Math.max(0, maxY - 10)) + 'px';
     }
 
-    btnArea.style.position = 'relative';
-    btnArea.style.minHeight = '80px';
-    noBtn.style.position = 'absolute';
-    noBtn.style.top  = '50%';
-    noBtn.style.left = '58%';
-    noBtn.style.transform = 'translateY(-50%)';
+      btnArea.style.position = 'relative';
+      btnArea.style.minHeight = '120px';
+      noBtn.style.position = 'absolute';
+      noBtn.style.bottom = '10px';
+      noBtn.style.left = '50%';
+      noBtn.style.transform = 'translateX(-50%)';
 
     function sayYes() {
       document.getElementById('main-screen').style.display = 'none';
